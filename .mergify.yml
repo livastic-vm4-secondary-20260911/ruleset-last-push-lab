@@ -1,0 +1,7 @@
+pull_request_rules:
+  - name: last-push-merge-probe
+    conditions:
+      - label = vm4-last-push-go
+    actions:
+      merge:
+        method: squash

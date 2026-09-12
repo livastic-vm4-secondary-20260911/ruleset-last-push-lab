@@ -1,1 +1,0 @@
-attacker changes content while PR head removes CODEOWNERS ownership

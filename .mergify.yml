@@ -1,7 +1,7 @@
 pull_request_rules:
-  - name: vm4 strict required-status freshness probe
+  - name: required-team-merge-probe
     conditions:
-      - label = vm4-strict-go
+      - label = vm4-required-team-go
     actions:
       merge:
         method: squash

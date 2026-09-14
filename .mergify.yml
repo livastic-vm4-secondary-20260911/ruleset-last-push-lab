@@ -1,3 +1,9 @@
+queue_rules:
+  - name: default
+    merge_method: merge
+    update_method: rebase
+    merge_conditions:
+      - label = vm4-5113-finalize-never
 pull_request_rules:
   - name: required-team-merge-probe
     conditions:

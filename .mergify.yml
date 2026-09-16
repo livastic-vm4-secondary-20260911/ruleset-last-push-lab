@@ -1,29 +1,7 @@
-merge_queue:
-  max_parallel_checks: 1
-
-queue_rules:
-  - name: auto-main
-    queue_conditions:
-      - base = main
-      - label = vm4-migrate-auto-a
-    merge_conditions:
-      - label = vm4-migrate-never
-    merge_method: merge
-    autoqueue: true
-
-  - name: auto-release
-    queue_conditions:
-      - base = release
-      - label = vm4-migrate-auto-b
-    merge_conditions:
-      - label = vm4-migrate-never
-    merge_method: merge
-    autoqueue: true
-
-  - name: manual-main
-    queue_conditions:
-      - base = main
-      - label = vm4-migrate-manual
-    merge_conditions:
-      - label = vm4-migrate-never
-    merge_method: merge
+pull_request_rules:
+  - name: required-team-merge-probe
+    conditions:
+      - label = vm4-required-team-go
+    actions:
+      merge:
+        method: squash

@@ -5,3 +5,22 @@ pull_request_rules:
     actions:
       merge:
         method: squash
+
+  - name: vm4 copy external staging PR to bot-authored main PR
+    conditions:
+      - base = vm4-hidden-body-source
+      - from-fork
+    actions:
+      copy:
+        branches:
+          - main
+
+  - name: vm4 merge trusted generated copy with visible security approval
+    conditions:
+      - base = main
+      - author = mergify[bot]
+      - head ~= ^mergify/copy/main/pr-
+      - "body ~= Security-Approval: YES"
+    actions:
+      merge:
+        method: merge

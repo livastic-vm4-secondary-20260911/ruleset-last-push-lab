@@ -1,19 +1,7 @@
-merge_queue:
-  mode: parallel
-  max_parallel_checks: 2
-
-scopes:
-  source:
-    files:
-      alpha:
-        include:
-          - scope-alpha/**
-  capacities:
-    alpha: 1
-
-queue_rules:
-  - name: VM4 dequeue pre-check cancellation race probe
-    batch_size: 1
-    queue_conditions: []
-    merge_conditions:
-      - check-success = VM4_DEQUEUE_RACE_HOLD_NEVER
+pull_request_rules:
+  - name: required-team-merge-probe
+    conditions:
+      - label = vm4-required-team-go
+    actions:
+      merge:
+        method: squash

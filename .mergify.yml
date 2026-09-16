@@ -1,7 +1,31 @@
-pull_request_rules:
-  - name: required-team-merge-probe
-    conditions:
-      - label = vm4-required-team-go
-    actions:
-      merge:
-        method: squash
+merge_queue:
+  mode: parallel
+  max_parallel_checks: 2
+  status_comments: none
+
+scopes:
+  source:
+    files:
+      alpha:
+        include:
+          - scope-alpha/**
+      beta:
+        include:
+          - scope-beta/**
+      gamma:
+        include:
+          - scope-gamma/**
+  default_capacity: 2
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM4_CAPACITY_HOLD_NEVER
+    batch_size: 1
+    batch_max_wait_time: "0 seconds"
+    merge_method: merge
+
+merge_protections_settings:
+  auto_merge_conditions:
+    - author = livastic-vm4-secondary-20260911

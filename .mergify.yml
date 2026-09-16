@@ -1,10 +1,7 @@
-merge_queue:
-  mode: serial
-
-queue_rules:
-  - name: VM4 fast-forward required-review parity
-    merge_method: fast-forward
-    batch_size: 1
-    queue_conditions: []
-    merge_conditions:
-      - check-success = VM4_FF_REVIEW_HOLD_NEVER
+pull_request_rules:
+  - name: required-team-merge-probe
+    conditions:
+      - label = vm4-required-team-go
+    actions:
+      merge:
+        method: squash

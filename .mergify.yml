@@ -1,23 +1,7 @@
-merge_queue:
-  mode: parallel
-  max_parallel_checks: 3
-
-scopes:
-  source:
-    files:
-      alpha:
-        include:
-          - scope-alpha/**
-      beta:
-        include:
-          - scope-beta/**
-  capacities:
-    alpha: 1
-    beta: 1
-
-queue_rules:
-  - name: VM4 dequeue contention cancellation probe
-    batch_size: 1
-    queue_conditions: []
-    merge_conditions:
-      - check-success = VM4_DEQUEUE_CONTENTION_HOLD_NEVER
+pull_request_rules:
+  - name: required-team-merge-probe
+    conditions:
+      - label = vm4-required-team-go
+    actions:
+      merge:
+        method: squash
